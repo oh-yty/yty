@@ -1,0 +1,50 @@
+1.简单书写 九九乘法表
+public class Test {
+	public static void main(String[] args) {
+		for(int i=1;i<10;i++){
+			for(int j=1;j<=i;j++){             //切记j<=i，不要写成j<i,否则第一行1*1 就不能输出
+				System.out.print(i+"*"+j+"="+(i*j)+"\t");
+			}
+			System.out.println("");//for循环一次，输出一行就换一行
+	    }
+	}
+}
+
+2.计算e=1/1!+1/2!+1/3!+1/4!+…1/n!
+import java.util.Scanner;
+//计算e=1/1!+1/2!+1/3!+1/4!+…1/n!
+public class Test2 {
+	public static float ETest(int n){
+		float e = 1.0f;
+		float t =1.0f;
+		for( int i=1;i<=n;i++){
+			t=t/i;     //重点：求阶乘
+			e=e+t;
+		}
+		return e;
+	}
+	public static void main(String[] args) {
+		float e=ETest(200);
+		System.out.println(e);
+	}
+}
+3.计算pi 的值
+//计算pi
+public class Test3 {
+	public static double Cal(int n){
+		double pi=0;
+		for(int i=3;i<n;i=i+4){    //3,7,11...
+		    pi=pi-((double)1/i);
+		}
+		for(int i=1;i<n;i=i+4){     //1,5,9...
+		    pi=pi+((double)1/i);
+		}
+		pi=4*pi;
+		return pi;
+	}
+	public static void main(String[] args) {
+		double pi=Cal(5000000);
+		System.out.printf("%f%n",pi);  //"f"表示格式化输出浮点数,"%n"是由于jvm跨平台运行
+	}
+
+}
