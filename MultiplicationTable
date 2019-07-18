@@ -1,0 +1,12 @@
+//九九乘法表
+public class MultiplicationTable {
+	public static void main(String[] args) {
+		for(int i=1;i<10;i++){
+			for(int j=1;j<=i;j++){             //切记j<=i，不要写成j<i,否则第一行1*1就不能显示
+			    System.out.print(j+"*"+i+"="+(i*j)+"\t");
+				//System.out.printf("%d*%d=%d\t",j,i,i*j);    //第二种输出方式
+			}
+			System.out.println("");//for循环一次，输出一行就换一行
+	    }
+	}
+}
