@@ -22,7 +22,7 @@ public class BinarySearch {
 //			}if(v<a[mid]){
 //				right=mid;       //因为是已经排好序的，如果v<a[mid]说明mid要在right和 原mid中间，所以 right=原mid
 //			}else{
-//				left=mid+1;      //？ 为什么left=mid+1 （由于左闭右开？）
+//				left=mid+1;      //？ 为什么left=mid+1 （由于左闭右开？） 解left=mid+1的原因：https://mp.csdn.net/postedit/96439395
 //			}
 //		}
 //		return -1;
@@ -31,13 +31,14 @@ public class BinarySearch {
 	public static int BS2(int[] a,int v){
 		int left=0;
 		int right=a.length-1;
-		while(left<=right){      //除了< 当left=right时还有一个元素存在
+		while(left<=right){      //除了< 当left=right时还有一个元素存在 比如[5,5]，还有a[5]存在
 			int mid=(left+right)/2;
 			if(v==a[mid]){
 				return mid;
 			}if(v<a[mid]){
 				right=mid-1;
-				//right=mid;     //上下两条语句的结果都是一样的，猜测可能在时间复杂度上有差别？
+				//right=mid;     //上下两条语句的结果都是一样的，猜测可能在时间复杂度上有差别？ 解释：虽然两个结果一样，但实际在分析时会发现问题
+				                 //解right=mid-1的原因：https://mp.csdn.net/postedit/96439395
 			}else{
 				left=mid+1;
 				//left=mid;
