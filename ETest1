@@ -1,0 +1,20 @@
+package Day;
+import java.util.Scanner;
+//计算e=1/1!+1/2!+1/3!+1/4!+…1/n!
+public class ETest1 {
+	public static float ETest(int n){
+		float e = 1.0f;
+		float t =1.0f;
+		for( int i=1;i<=n;i++){
+			t=t/i;     //求阶乘
+			e=e+t;
+		}
+		return e;
+	}
+	public static void main(String[] args) {
+		float e=ETest(200);
+		System.out.println(e);
+	}
+}
+
+
