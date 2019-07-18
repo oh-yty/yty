@@ -1,0 +1,57 @@
+package Day;
+
+import java.util.Arrays;
+
+//二叉树查找
+//数组是有序的，可以使用sort()方法来排序
+public class BinarySearch {
+	//左闭右开
+//	public static int BS1(int[] a,int v){      //这个v很重要，这里v表示数组a[]中任意一个值
+////		int b[]=new int[a.length];             
+////		for(int i=0;i<a.length;i++){           //绝对不能用for循环写
+////			if(i==a.length/2){
+////				b[0]=a[i];
+////			}
+////		}
+//		int left=0;
+//		int right=a.length;      //因为是左闭右开
+//		while(left<right){       //只有left<right数组才有元素，否则返回-1
+//			int mid=(left+right)/2;
+//			if(v==a[mid]){
+//				return mid;
+//			}if(v<a[mid]){
+//				right=mid;       //因为是已经排好序的，如果v<a[mid]说明mid要在right和 原mid中间，所以 right=原mid
+//			}else{
+//				left=mid+1;      //？ 为什么left=mid+1 （由于左闭右开？）
+//			}
+//		}
+//		return -1;
+//	}
+	//左闭右闭
+	public static int BS2(int[] a,int v){
+		int left=0;
+		int right=a.length-1;
+		while(left<=right){      //除了< 当left=right时还有一个元素存在
+			int mid=(left+right)/2;
+			if(v==a[mid]){
+				return mid;
+			}if(v<a[mid]){
+				right=mid-1;
+				//right=mid;     //上下两条语句的结果都是一样的，猜测可能在时间复杂度上有差别？
+			}else{
+				left=mid+1;
+				//left=mid;
+			}
+		}
+		return -1;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] a={25,6,48,15,30,49,3,11,86,9,29};
+		Arrays.sort(a);
+		System.out.println(Arrays.toString(a));
+
+	}
+
+}
