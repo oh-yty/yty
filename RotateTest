@@ -1,0 +1,28 @@
+
+//字符串旋转 右旋转
+//比如 {1,2,3,4,5} => 当k=3时，{3,5,4,1,2}
+
+import java.util.Arrays;
+public class RotateTest {
+	public static int[] rotate(int[] a,int k){
+		k=k % a.length;
+		//Arrays.copyOfRange(int[] original,int from,int to);
+		int[] rightPart=Arrays.copyOfRange(a, a.length-k, a.length);    //从下标a.length-k 开始到a.length 复制到right.length
+		                                                                //rightPart={3,4,5}
+		//System.arraycopy(Object src,int srcPos,Object dest,int destPos,int length);
+		System.arraycopy(a, 0, a, k, a.length-k);     //此时a={-,-,-,1,2}
+		System.arraycopy(rightPart, 0, a, 0, k);      //a={3,4,5,1,2}
+		return a;
+	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub,
+		int[]a={1,2,3,4,5};
+		//rotate(a, 3);    //3和8的旋转结果一样
+		rotate(a,8);
+		System.out.println(Arrays.toString(a));
+        
+	}
+
+}
