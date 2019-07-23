@@ -1,0 +1,37 @@
+
+
+import java.util.Arrays;
+//给定一组数组，经过转换后偶数在前，奇数在后
+public class SortArrayByParity2 {
+	public static void swap(int[]a,int i,int j){
+		int temp;
+		temp=a[i];
+		a[i]=a[j];
+		a[j]=temp;
+	}
+	public static int[] Sp(int[] a){
+		//未判断区间[begin,end]
+		//偶数区间[0,begin]
+		//奇数区间[end,a.length]
+		int begin = 0;
+		int end = a.length-1;
+		while(begin<end){
+			while(begin<end && a[begin]%2==0){    
+				begin = begin+1;
+			}
+			while(begin <end && a[end]%2!=0){    
+				end=end-1;
+			}
+			swap(a,begin,end);
+		}
+		return a;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         int[] a={1,2,3,4,5,6,7,8,9};
+         //System.out.println(Arrays.toString( Sp(a)));
+         System.out.println(Arrays.toString(Sp(a)));
+	}
+
+}
