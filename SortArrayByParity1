@@ -1,0 +1,32 @@
+
+
+import java.util.Arrays;
+//给定一组数组，经过转换后偶数在前，奇数在后
+public class SortArrayByParity1 {
+	public static void swap(int[] a,int i,int j){
+		int temp;
+		temp=a[i];
+		a[i]=a[j];
+		a[j]=temp;
+	}
+	public static int[] sortArray(int[]a){
+		//偶数区间 0-d
+		//奇数区间d-i
+		//未判断区间 i-a.length
+	    int d=0;
+	    for(int i=0;i<a.length;i++){
+	    	if(a[i]%2==0){
+	    		swap(a,i,d);
+	    		d++;
+	    	}
+	    }
+	    return a;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+         int[]a={1,2,3,4,5,6,7,8,9};
+         System.out.println(Arrays.toString(sortArray(a)));
+	}
+
+}
