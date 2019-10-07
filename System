@@ -1,0 +1,292 @@
+import java.util.*;
+class Xs  {
+	private String sid;
+	private String sname;
+	private String ssex;
+	private String major;
+	private float English;
+	private float Math;
+	private float Java;
+	public Xs(){
+	}
+	public Xs( String sid,String sname,String ssex,String major,float English,float Math,float Java){
+		super();
+		this.sid=sid;
+		this.sname=sname;
+		this.ssex=ssex;
+		this.major=major;
+		this.English=English;
+		this.Math=Math;
+		this.Java=Java;
+		
+	}
+	public void setSid(String sid){
+		this.sid=sid;
+	}
+	public String getSid(){
+		return sid;
+	}
+	public void setSname(String sname){
+		this.sname=sname;
+	}
+	public String getSname(){
+		return sname;
+	}
+	public void setSsex(String ssex){
+		this.ssex=ssex;
+	}
+	public String getSsex(){
+		return ssex;
+	}
+	public void setMajor(String major){
+		this.major=major;
+	}
+	public String getMajor(){
+		return major;
+	}
+	public void setEnglish(float English){
+		this.English=English;
+	}
+	public float getEnglish(){
+		return English;
+	}
+	public void setMath(float Math){
+		this.Math=Math;
+	}
+	public float getMath(){
+		return Math;
+	}
+	public void setJava(float Java){
+		this.Java=Java;
+	}
+	public float getJava(){
+		return Java;
+	}
+	public String toString(){
+		return sid+" "+sname+" "+ssex+" "+major;
+	} 
+
+}
+
+public class manageStudent {
+	public static void main(String[] args) {
+		ArrayList<Xs> list = new ArrayList<Xs>();
+        Xs xs1= new Xs("001","杨婷亚","女","信管",70,80,90);
+        Xs xs2= new Xs("002","韩怡童","女","信管",73,86,94);
+        Xs xs3=new Xs("003","罗雨秋","女","信管",75,88,89);
+        list.add(xs1);
+        list.add(xs2);
+        list.add(xs3);
+        System.out.println("---------学生管理系统--------");
+        System.out.println("1.查看所有学生信息");
+        System.out.println("2.增加学生");
+        System.out.println("3.删除学生");
+        System.out.println("4.修改学生");        
+        System.out.println("5.根据学号查找信息"); 
+        System.out.println("请输入序号选择相应的功能："); 
+        Scanner sc=new Scanner(System.in);
+        int a= sc.nextInt();
+        switch(a){
+//查询        	
+        	case 1:
+        		if(list.size()==0){
+            		System.out.println("您查找的信息不存在！请返回！");
+            		return;
+            	}
+            	System.out.println("学号\t姓名\t年龄\t专业\t英语\t数学\tJava");
+                for(int i=0;i<list.size();i++){
+                	Xs x=list.get(i);
+                	System.out.println(x.getSid()+"\t"+x.getSname()+"\t"+x.getSsex()+"\t"+x.getMajor()+"\t"+x.getEnglish()+"\t"+x.getMath()+"\t"+x.getJava());
+                }
+        		break;
+//添加        	
+        	case 2:
+                Scanner sc1=new Scanner(System.in);
+            	String inid;
+            	System.out.println("请输入学号：");
+            	inid=sc1.nextLine();
+            	boolean flag=false;
+            	for(int i=0;i<list.size();i++){
+ //           		Xs x1=list.get(i);
+            		if(list.get(i).equals(inid)){
+            			flag=true;
+            		} 
+            	}
+            	if(flag){
+            		System.out.println("您输入的学号重复！");
+            	}else{
+                		System.out.println("请输入姓名"+"\t"+"性别");
+            	String inname=sc.nextLine();      
+                String insex=sc.nextLine(); 
+                Xs xs4=new Xs();
+                xs4.setSid(inid);
+                xs4.setSname(inname);
+                xs4.setSsex(insex);
+                list.add(xs4);
+                System.out.println("添加学生成功！");
+            	}        	
+//删除
+        	case 3:
+        		Scanner sc2 = new Scanner(System.in);
+            	System.out.println("请输入要删除的学号：");
+            	String deid=sc2.nextLine();
+            	int index=-1;
+            	for(int i=0;i<list.size();i++){
+            		Xs x2=list.get(i);
+            		if(x2.getSid().equals(deid)){
+            			index=i;
+            		}
+            		if(index==-1){
+            			System.out.println("您要删除的学生不存在，请重新输入！");
+            		}else{
+            			list.remove(index);
+            			System.out.println("删除成功！");
+            		}
+            	}
+            	break;
+//修改
+        	case 4:
+        		Scanner sc3 = new Scanner(System.in);
+        		System.out.println("请输入要修改的学号：");
+        		String chid=sc3.nextLine();
+        		int index1=-1;
+            	for(int i=0;i<list.size();i++){
+            		if(list.get(i).equals(chid)){
+            			index=i;
+            		}
+            	}
+            		if(index1==-1){
+            			System.out.println("您要修改的学生不存在，请重新操作！");
+            		}else{
+            			System.out.println("请输入新同学的姓名："+"\t"+"性别");
+            			String chname=sc.nextLine();      
+                    	String chsex=sc.nextLine();
+                    	Xs xs5=new Xs();
+                    	xs5.setSid(chid);
+                    	xs5.setSname(chname);
+                    	xs5.setSsex(chsex);
+                    	list.add(xs5);
+                    	System.out.println("修改学生成功！");
+                    	
+            		}
+            	
+            	break;
+//查询特定学生信息
+        	case 5:
+        		Scanner sc4 = new Scanner(System.in);
+        		System.out.println("请输入要查询的学号：");
+        		String cxid=sc4.nextLine();
+            	for(int i=0;i<list.size();i++){
+            		Xs x3=list.get(i);
+            	    if(x3.getSid().equals(cxid)){
+            			System.out.println(x3.getSid()+"\t"+x3.getSname()+"\t"+x3.getSsex()+"\t"+x3.getMajor()+"\t"+x3.getEnglish()+"\t"+x3.getMath()+"\t"+x3.getJava());
+            		}
+	            }
+            
+        	
+   }            
+   }
+}
+===============================================================================================================
+import java.util.*;
+class Teacher{
+	private String tid;
+	private String tname;
+	public Teacher(){
+		
+	}
+	public Teacher(String tid,String tname){
+		this.tid=tid;
+		this.tname=tname;		
+	}
+	public void setTid(String tid){
+		this.tid=tid;
+	}
+	public String getTid(){
+		return tid;
+	}
+	public void setTname(String tname){
+		this.tname=tname;
+	}
+	public String getTname(){
+		return tname;
+	}
+	public String toString(){
+		return tid+" "+tname;
+	} 
+
+}
+public class manageTeacher {
+	public static void main(String[] args) {
+		ArrayList<Teacher> list = new ArrayList<Teacher>();
+		Teacher t1=new Teacher("0001","Jack");
+		Teacher t2=new Teacher("0002","Jacson");
+		list.add(t1);
+		list.add(t2);
+		System.out.println("---------教师管理系统--------");
+        System.out.println("1.查看所有教师信息");
+        System.out.println("2.删除教师");
+        System.out.println("3.修改教师信息");        
+        System.out.println("请输入序号选择相应的功能："); 
+        Scanner sc=new Scanner(System.in);
+        int a= sc.nextInt();
+        switch(a){
+//查询        	
+        	case 1:
+        		if(list.size()==0){
+            		System.out.println("您查找的信息不存在！请返回！");
+            		return;
+            	}
+            	System.out.println("工号\t姓名");
+                for(int i=0;i<list.size();i++){
+                	Teacher th1=list.get(i);
+                	System.out.println(th1.getTid()+"\t"+th1.getTname());
+                }
+        		break;      	
+//删除
+        	case 2:
+        		Scanner sc2 = new Scanner(System.in);
+            	System.out.println("请输入要删除的工号：");
+            	String deid=sc2.nextLine();
+            	int index=-1;
+            	for(int i=0;i<list.size();i++){
+            		Teacher th2=list.get(i);
+            		if(th2.getTid().equals(deid)){
+            			index=i;
+            		}
+            		if(index==-1){
+            			System.out.println("您要删除的教师不存在，请重新输入！");
+            		}else{
+            			list.remove(index);
+            			System.out.println("删除成功！");
+            		}
+            	}
+            	break;
+//修改
+        	case 3:
+        		Scanner sc3 = new Scanner(System.in);
+        		System.out.println("请输入要修改的工号：");
+        		String chtid=sc3.nextLine();
+        		int index1=-1;
+            	for(int i=0;i<list.size();i++){
+            		Teacher th3=list.get(i);
+            		if(th3.getTid().equals(chtid)){
+            			index=i;
+            		}
+            	}
+            	if(index1==-1){
+            			System.out.println("您要修改的教师不存在，请重新操作！");
+            	}else{
+            			System.out.println("请输入新教师的姓名：");
+            			String chtname=sc.nextLine();   
+                    	Teacher t3=new Teacher();
+                    	t3.setTid(chtid);
+                    	t3.setTname(chtname);
+                    	list.set(index1, t3);
+                    	System.out.println("修改教师信息成功！");
+            	}
+	         }
+        
+
+  }
+}
